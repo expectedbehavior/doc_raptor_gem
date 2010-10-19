@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
-  s.name = %q{DocRaptor}
-  s.description = %q{Provides a simple wrapper around the DocRaptor API}
+  s.name = %q{doc-raptor}
+  s.description = %q{Provides a simple ruby wrapper around the DocRaptor API}
   s.version = "0.1.0"
   s.date = %q{2010-10-20}
   s.authors = ["Michael Kuehl"]
