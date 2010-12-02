@@ -1,7 +1,7 @@
 DocRaptor
 ==========
 
-This is a Ruby gem providing a simple wrapper around the DocRaptor API.
+This is a Ruby gem providing a simple wrapper around the DocRaptor API. DocRaptor is a web service that allows you to convert [html to pdf](http://docraptor.com) or html to xls. 
 
 
 ## Usage ######################################################################

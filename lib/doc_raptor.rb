@@ -12,7 +12,9 @@ class DocRaptor
   # when given a block, hands the block a TempFile of the resulting document
   # otherwise, just returns the response
   def self.create(options = { })
-    raise "must supply :document_content" if options[:document_content].blank?
+    if options[:document_content].blank? && options[:document_url].blank?
+      raise "must supply :document_content or :document_url" 
+    end
     
     default_options = { 
       :name             => "default",
