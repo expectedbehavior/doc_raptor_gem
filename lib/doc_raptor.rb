@@ -26,16 +26,28 @@ class DocRaptor
     response = post("/docs", :body => {:doc => options}, :basic_auth => { :username => api_key })
     
     if block_given?
+      ret_val = nil
       Tempfile.open("docraptor") do |f|
         f.sync = true
         f.write(response.body)
         f.rewind
 
-        yield f, response
+        ret_val = yield f, response
       end
+      ret_val
     else
       response
     end
+  end
+  
+  def self.list_docs(options = { })
+    default_options = { 
+      :page     => 1,
+      :per_page => 100
+    }
+    options = default_options.merge(options)
+    
+    get("/docs", :query => options, :basic_auth => { :username => api_key })
   end
   
   base_uri ENV["DOCRAPTOR_URL"] || "https://docraptor.com/"
