@@ -65,6 +65,7 @@ class DocRaptor
     json = response.parsed_response
     if json['status'] == 'completed'
       self.download_key json['download_url'].match(/.*?\/download\/(.+)/)[1]
+      json['download_key'] = @download_key
     end
     json
   end
