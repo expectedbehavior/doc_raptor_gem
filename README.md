@@ -36,8 +36,8 @@ The create call can also take a block, like so:
     end 
 
 To get the status of an async request, you can call:
-
-   DocRaptor.status(status_id => id_of_last_async_job)
+   DocRaptor.status             # uses the id of the most recently created async job
+   DocRaptor.status(status_id)  # query some other async job and make it the "active" async job for the DocRaptor class
 
 status_id is the value returned from DocRaptor.create when :async is true.  If you have 
 just created a document, status_id defaults to the last status_id received from DocRaptor.
@@ -57,7 +57,8 @@ for the failure to generate your document.
 To download an async document, you can visit the URL (download_url) provided via the status 
 function or you can call:
 
-   DocRaptor.download(download_key => key_of_last_checked_completed_job)
+   DocRaptor.download                # uses the key of the most recently checked async job which is complete
+   DocRaptor.download(download_key)  # use some other complete doc's download key
 
 download_key is the value from the status hash of a call to DocRaptor.status of a 
 completed job.  If you have just checked the status of a document and it is completed, 
