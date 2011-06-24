@@ -58,7 +58,9 @@ To download an async document, you can visit the URL (download_url) provided via
 function or you can call:
 
    DocRaptor.download                # uses the key of the most recently checked async job which is complete
+
    DocRaptor.download(download_key)  # use some other complete doc's download key
+
 
 download_key is the value from the status hash of a call to DocRaptor.status of a 
 completed job.  If you have just checked the status of a document and it is completed, 
