@@ -66,6 +66,11 @@ download_key defaults to that of the document you just checked.  The download fu
 works like DocRaptor.create in that you get back either an HTTParty response object or 
 you can give it a block.
 
+## Examples ###################################################################
+Check the examples directory for some simple examples. To make them work, you will need to have the docraptor gem installed (via bundler or gem install).
+
+For more examples including a full rails example, check https://github.com/expectedbehavior/doc_raptor_examples.
+
 ## Meta #######################################################################
 
 Maintained by Expected Behavior

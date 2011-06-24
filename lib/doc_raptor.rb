@@ -43,7 +43,7 @@ class DocRaptor
       end
       ret_val
     elsif options[:async]
-      self.status_id response.parsed_response["status_id"]
+      self.status_id = response.parsed_response["status_id"]
     else
       response
     end
@@ -59,19 +59,19 @@ class DocRaptor
     get("/docs", :query => options, :basic_auth => { :username => api_key })
   end
   
-  def self.status(status_id = @status_id)
-    response = get("/status/#{status_id}", :basic_auth => { :username => api_key }, :output => 'json')
+  def self.status(id = self.status_id)
+    response = get("/status/#{id}", :basic_auth => { :username => api_key }, :output => 'json')
 
     json = response.parsed_response
     if json['status'] == 'completed'
-      self.download_key json['download_url'].match(/.*?\/download\/(.+)/)[1]
-      json['download_key'] = @download_key
+      self.download_key = json['download_url'].match(/.*?\/download\/(.+)/)[1]
+      json['download_key'] = self.download_key
     end
     json
   end
 
-  def self.download(download_key = @download_key)
-    response = get("/download/#{download_key}")
+  def self.download(key = self.download_key)
+    response = get("/download/#{key}")
     if block_given?
       ret_val = nil
       Tempfile.open("docraptor") do |f|
@@ -87,14 +87,9 @@ class DocRaptor
     end
   end
 
-  def self.status_id(id = nil)
-    return @status_id unless id
-    @status_id = id
-  end
-
-  def self.download_key(key = nil)
-    return @download_key unless key
-    @download_key = key
+  class << self
+    attr_accessor :status_id
+    attr_accessor :download_key
   end
 
   base_uri ENV["DOCRAPTOR_URL"] || "https://docraptor.com/"
