@@ -20,11 +20,18 @@ class DocRaptor
       :name             => "default",
       :document_type    => "pdf",
       :test             => false,
+      :async            => false,
     }
     options = default_options.merge(options)
+
+    query = { }
+    if options[:async]
+      query[:output => 'json']
+    end
     
-    response = post("/docs", :body => {:doc => options}, :basic_auth => { :username => api_key })
     
+    response = post("/docs", :body => {:doc => options}, :basic_auth => { :username => api_key }, :query => query)
+
     if block_given?
       ret_val = nil
       Tempfile.open("docraptor") do |f|
@@ -35,6 +42,8 @@ class DocRaptor
         ret_val = yield f, response
       end
       ret_val
+    elsif options[:async]
+      self.status_id = response.parsed_response["status_id"]
     else
       response
     end
@@ -50,6 +59,39 @@ class DocRaptor
     get("/docs", :query => options, :basic_auth => { :username => api_key })
   end
   
+  def self.status(id = self.status_id)
+    response = get("/status/#{id}", :basic_auth => { :username => api_key }, :output => 'json')
+
+    json = response.parsed_response
+    if json['status'] == 'completed'
+      self.download_key = json['download_url'].match(/.*?\/download\/(.+)/)[1]
+      json['download_key'] = self.download_key
+    end
+    json
+  end
+
+  def self.download(key = self.download_key)
+    response = get("/download/#{key}")
+    if block_given?
+      ret_val = nil
+      Tempfile.open("docraptor") do |f|
+        f.sync = true
+        f.write(response.body)
+        f.rewind
+
+        ret_val = yield f, response
+      end
+      ret_val
+    else
+      response
+    end
+  end
+
+  class << self
+    attr_accessor :status_id
+    attr_accessor :download_key
+  end
+
   base_uri ENV["DOCRAPTOR_URL"] || "https://docraptor.com/"
   api_key  ENV["DOCRAPTOR_API_KEY"]
   

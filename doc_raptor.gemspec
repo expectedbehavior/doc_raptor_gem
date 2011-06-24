@@ -2,9 +2,9 @@ Gem::Specification.new do |s|
   s.name = %q{doc_raptor}
   s.description = %q{Provides a simple ruby wrapper around the DocRaptor API}
   s.summary = %q{Provides a simple ruby wrapper around the DocRaptor API}
-  s.version = "0.1.3"
-  s.date = %q{2011-01-29}
-  s.authors = ["Michael Kuehl"]
+  s.version = "0.1.4"
+  s.date = %q{2011-06-24}
+  s.authors = ["Michael Kuehl","Joel Meador","Chris Moore"]
   s.email = %q{michael@expectedbehavior.com}
   s.summary = %q{wrap up the api for DocRaptor nicely}
   s.homepage = %q{http://docraptor.com}

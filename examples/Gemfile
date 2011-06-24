@@ -1,0 +1,3 @@
+source :rubygems
+
+gem 'doc_raptor'
