@@ -1,5 +1,8 @@
 = doc_raptor Change Log
 
+== doc_raptor 0.1.4
+* add support for creating async jobs
+
 == doc_raptor 0.1.3
 * if a block is given to "create", make the value the block returns be the
   value create returns
