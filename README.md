@@ -36,6 +36,7 @@ The create call can also take a block, like so:
     end 
 
 To get the status of an async request, you can call:
+  
     # uses the id of the most recently created async job
     DocRaptor.status
     # query some other async job and make it the "active" async job for the DocRaptor class
