@@ -1,5 +1,8 @@
 = doc_raptor Change Log
 
+== doc_raptor 0.1.5
+* fix bug caused by activesupport safebuffers in rails ~3.0.6 and up
+
 == doc_raptor 0.1.4
 * add support for creating async jobs
 

@@ -28,8 +28,15 @@ class DocRaptor
     if options[:async]
       query[:output => 'json']
     end
-    
-    
+
+    # HOTFIX
+    # convert safebuffers to plain old strings so the gsub'ing that has to occur
+    # for url encoding works
+    # Broken by: https://github.com/rails/rails/commit/1300c034775a5d52ad9141fdf5bbdbb9159df96a#activesupport/lib/active_support/core_ext/string/output_safety.rb
+    # Discussion: https://github.com/rails/rails/issues/1555
+    options.map{|k,v| options[k] = options[k].to_str if options[k].is_a?(ActiveSupport::SafeBuffer)}
+    # /HOTFIX
+
     response = post("/docs", :body => {:doc => options}, :basic_auth => { :username => api_key }, :query => query)
 
     if block_given?
