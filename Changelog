@@ -1,5 +1,8 @@
 = doc_raptor Change Log
 
+== doc_raptor 0.1.6
+* allow the gem to be used outside of places with activesupport
+
 == doc_raptor 0.1.5
 * fix bug caused by activesupport safebuffers in rails ~3.0.6 and up
 

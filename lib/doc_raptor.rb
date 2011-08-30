@@ -20,7 +20,7 @@ class DocRaptor
       :name             => "default",
       :document_type    => "pdf",
       :test             => false,
-      :async            => false,
+      :async            => false
     }
     options = default_options.merge(options)
 
@@ -34,7 +34,9 @@ class DocRaptor
     # for url encoding works
     # Broken by: https://github.com/rails/rails/commit/1300c034775a5d52ad9141fdf5bbdbb9159df96a#activesupport/lib/active_support/core_ext/string/output_safety.rb
     # Discussion: https://github.com/rails/rails/issues/1555
-    options.map{|k,v| options[k] = options[k].to_str if options[k].is_a?(ActiveSupport::SafeBuffer)}
+    if defined?(ActiveSupport) && defined?(ActiveSupport::SafeBuffer)
+      options.map{|k,v| options[k] = options[k].to_str if options[k].is_a?(ActiveSupport::SafeBuffer)}
+    end
     # /HOTFIX
 
     response = post("/docs", :body => {:doc => options}, :basic_auth => { :username => api_key }, :query => query)
