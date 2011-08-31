@@ -1,5 +1,6 @@
 source :rubygems
 
+gem 'httparty', '>=0.4.3'
 gem 'doc_raptor'
 
 group :development, :test do
