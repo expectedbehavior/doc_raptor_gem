@@ -1,28 +1,62 @@
 require "httparty"
 require "tempfile"
 
+module DocRaptorError
+  class NoApiKeyProvidedError < RuntimeError; end
+  class NoContentError < ArgumentError; end
+end
+
+module DocRaptorException
+  class DocumentCreationFailure < StandardError
+    attr_accessor :status_code
+    attr_accessor :message
+    def initialize(message, status_code)
+      self.message = message
+      self.status_code = status_code
+      super message
+    end
+
+    def to_s
+      "DocumentCreationFailure\nHTTP Status: #{status_code}\nReturned: #{message}"
+    end
+
+    def inspect
+      self.to_s
+    end
+  end
+end
+
 class DocRaptor
   include HTTParty
   
   def self.api_key(key = nil)
-    return default_options[:api_key] unless key
-    default_options[:api_key] = key
+    default_options[:api_key] = key ? key : default_options[:api_key] || ENV["DOCRAPTOR_API_KEY"]
+    default_options[:api_key] || raise(DocRaptorError::NoApiKeyProvidedError.new("No API key provided"))
+  end
+
+  def self.create!(options = {})
+    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
+    self.create(options.merge({:raise_exception_on_failure => true}))
   end
 
   # when given a block, hands the block a TempFile of the resulting document
   # otherwise, just returns the response
   def self.create(options = { })
+    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
     if options[:document_content].blank? && options[:document_url].blank?
-      raise "must supply :document_content or :document_url" 
+      raise DocRaptorError::NoContentError.new("must supply :document_content or :document_url")
     end
-    
+
     default_options = { 
-      :name             => "default",
-      :document_type    => "pdf",
-      :test             => false,
-      :async            => false
+      :name                       => "default",
+      :document_type              => "pdf",
+      :test                       => false,
+      :async                      => false,
+      :raise_exception_on_failure => false
     }
     options = default_options.merge(options)
+    raise_exception_on_failure = options[:raise_exception_on_failure]
+    options.delete :raise_exception_on_failure
 
     query = { }
     if options[:async]
@@ -40,6 +74,10 @@ class DocRaptor
     # /HOTFIX
 
     response = post("/docs", :body => {:doc => options}, :basic_auth => { :username => api_key }, :query => query)
+
+    if raise_exception_on_failure && !response.success?
+      raise DocRaptorException::DocumentCreationFailure.new response.body, response.code
+    end
 
     if block_given?
       ret_val = nil
@@ -102,6 +140,4 @@ class DocRaptor
   end
 
   base_uri ENV["DOCRAPTOR_URL"] || "https://docraptor.com/"
-  api_key  ENV["DOCRAPTOR_API_KEY"]
-  
 end
