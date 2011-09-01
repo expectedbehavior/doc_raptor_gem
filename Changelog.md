@@ -1,5 +1,12 @@
 # DocRaptor gem Change Log
 
+## doc_raptor 0.2.0
+* tests!
+* added a create! method which will raise an exception when doc creation fails
+* added a list_docs! method which will raise an exception when doc listing fails
+* added a status! method which will raise an exception when getting an async status fails
+* added a download! method which will raise an exception when getting an async status fails
+
 ## doc_raptor 0.1.6
 * allow the gem to be used outside of places with activesupport
 
