@@ -88,13 +88,13 @@ class DocRaptorTest < MiniTest::Unit::TestCase
         invalid_html = "<herp"
         stub_http_response_with("invalid_pdf", :post, 422)
         response = DocRaptor.create(:document_content => invalid_html)
-        assert_equal response.body, file_fixture("invalid_pdf")
+        assert_equal file_fixture("invalid_pdf"), response.body
         assert_equal 422, response.code
       end
 
       it "should give me a valid response if I pass some valid content" do
         stub_http_response_with("simple_pdf", :post)
-        assert_equal DocRaptor.create(:document_content => @html_content).body, file_fixture("simple_pdf")
+        assert_equal file_fixture("simple_pdf"), DocRaptor.create(:document_content => @html_content).body
       end
     end
   end
@@ -139,7 +139,52 @@ class DocRaptorTest < MiniTest::Unit::TestCase
 
       it "should give me a valid response if I pass some valid content" do
         stub_http_response_with("simple_pdf", :post)
-        assert_equal DocRaptor.create!(:document_content => @html_content).body, file_fixture("simple_pdf")
+        assert_equal file_fixture("simple_pdf"), DocRaptor.create!(:document_content => @html_content).body
+      end
+    end
+  end
+  
+  describe "list_docs" do
+    before do
+      DocRaptor.api_key "something something"
+    end
+
+    describe "with bogus arguments" do
+      it "should raise an error if something other than an options hash is passed in" do
+        assert_raises(ArgumentError) {DocRaptor.list_docs(true)}
+        assert_raises(ArgumentError) {DocRaptor.list_docs(nil)}
+      end
+    end
+    
+    describe "with good arguments" do
+      it "should give me a valid response" do
+        stub_http_response_with("simple_list_docs", :get)
+        assert_equal file_fixture("simple_list_docs"), DocRaptor.list_docs.body
+      end
+    end
+  end
+
+  describe "list_docs!" do
+    before do
+      DocRaptor.api_key "something something"
+    end
+
+    describe "with bogus arguments" do
+      it "should raise an error if something other than an options hash is passed in" do
+        assert_raises(ArgumentError) {DocRaptor.list_docs!(true)}
+        assert_raises(ArgumentError) {DocRaptor.list_docs!(nil)}
+      end
+    end
+    
+    describe "with good arguments" do
+      it "should give me a valid response" do
+        stub_http_response_with("simple_list_docs", :get)
+        assert_equal file_fixture("simple_list_docs"), DocRaptor.list_docs!.body
+      end
+
+      it "raise an exception when the list get fails" do
+        stub_http_response_with("invalid_list_docs", :get, 422)
+        assert_raises(DocRaptorException::DocumentListingFailure) {DocRaptor.list_docs!}
       end
     end
   end

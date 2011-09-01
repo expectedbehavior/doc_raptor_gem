@@ -1,0 +1,12 @@
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<docs type=\"array\">
+  <doc>
+    <created-at type=\"datetime\">2011-09-01T19:22:42Z</created-at>
+    <document-type>pdf</document-type>
+    <ip-address>192.168.0.1</ip-address>
+    <javascript type=\"boolean\">false</javascript>
+    <name>try_it_now_doc</name>
+    <tag nil=\"true\"></tag>
+    <test type=\"boolean\">true</test>
+  </doc>
+</docs>

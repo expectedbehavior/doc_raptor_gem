@@ -7,7 +7,7 @@ module DocRaptorError
 end
 
 module DocRaptorException
-  class DocumentCreationFailure < StandardError
+  class DocRaptorRequestException < StandardError
     attr_accessor :status_code
     attr_accessor :message
     def initialize(message, status_code)
@@ -17,13 +17,15 @@ module DocRaptorException
     end
 
     def to_s
-      "DocumentCreationFailure\nHTTP Status: #{status_code}\nReturned: #{message}"
+      "#{self.class.name}\nHTTP Status: #{status_code}\nReturned: #{message}"
     end
 
     def inspect
       self.to_s
     end
   end
+  class DocumentCreationFailure < DocRaptorRequestException; end
+  class DocumentListingFailure < DocRaptorRequestException; end
 end
 
 class DocRaptor
@@ -96,14 +98,27 @@ class DocRaptor
     end
   end
   
+  def self.list_docs!(options = { })
+    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
+    self.list_docs(options.merge({:raise_exception_on_failure => true}))
+  end
+
   def self.list_docs(options = { })
+    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
     default_options = { 
       :page     => 1,
-      :per_page => 100
+      :per_page => 100,
+      :raise_exception_on_failure => false
     }
     options = default_options.merge(options)
-    
-    get("/docs", :query => options, :basic_auth => { :username => api_key })
+    raise_exception_on_failure = options[:raise_exception_on_failure]
+    options.delete :raise_exception_on_failure
+
+    response = get("/docs", :query => options, :basic_auth => { :username => api_key })
+    if raise_exception_on_failure && !response.success?
+      raise DocRaptorException::DocumentListingFailure.new response.body, response.code
+    end
+    response
   end
   
   def self.status(id = self.status_id)
