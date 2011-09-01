@@ -27,6 +27,7 @@ module DocRaptorException
   class DocumentCreationFailure < DocRaptorRequestException; end
   class DocumentListingFailure < DocRaptorRequestException; end
   class DocumentStatusFailure < DocRaptorRequestException; end
+  class DocumentDownloadFailure < DocRaptorRequestException; end
 end
 
 class DocRaptor
@@ -141,8 +142,17 @@ class DocRaptor
     json
   end
 
-  def self.download(key = self.download_key)
+  def self.download!(key = self.download_key)
+    self.download(key, true)
+  end
+
+  def self.download(key = self.download_key, raise_exception_on_failure = false)
     response = get("/download/#{key}")
+
+    if raise_exception_on_failure && !response.success?
+      raise DocRaptorException::DocumentDownloadFailure.new response.body, response.code
+    end
+
     if block_given?
       ret_val = nil
       Tempfile.open("docraptor") do |f|
