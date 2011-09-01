@@ -26,6 +26,7 @@ module DocRaptorException
   end
   class DocumentCreationFailure < DocRaptorRequestException; end
   class DocumentListingFailure < DocRaptorRequestException; end
+  class DocumentStatusFailure < DocRaptorRequestException; end
 end
 
 class DocRaptor
@@ -120,9 +121,17 @@ class DocRaptor
     end
     response
   end
-  
-  def self.status(id = self.status_id)
+
+  def self.status!(id = self.status_id)
+    self.status(id, true)
+  end
+
+  def self.status(id = self.status_id, raise_exception_on_failure = false)
     response = get("/status/#{id}", :basic_auth => { :username => api_key }, :output => 'json')
+
+    if raise_exception_on_failure && !response.success?
+      raise DocRaptorException::DocumentStatusFailure.new response.body, response.code
+    end
 
     json = response.parsed_response
     if json['status'] == 'completed'
