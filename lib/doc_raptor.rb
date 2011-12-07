@@ -1,5 +1,6 @@
 require "httparty"
 require "tempfile"
+require File.expand_path(File.dirname(__FILE__) + "/core_ext/object/blank")
 
 module DocRaptorError
   class NoApiKeyProvidedError < RuntimeError; end
