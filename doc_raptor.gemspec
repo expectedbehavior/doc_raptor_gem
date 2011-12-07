@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://docraptor.com}
   s.require_paths = ["lib"]
   s.files = [ "Changelog.md", "README.md", "MIT-LICENSE", "lib/doc_raptor.rb"]
-  
+
   [
    ["httparty", ">=0.4.3"],
   ].each do |gem_name, gem_version|
