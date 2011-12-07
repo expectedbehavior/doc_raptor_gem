@@ -78,7 +78,7 @@ class DocRaptorTest < MiniTest::Unit::TestCase
         assert_raises(DocRaptorError::NoContentError) {DocRaptor.create(:document_url => "")}
       end
     end
-    
+
     describe "with document_content" do
       before do
         @html_content = "<html><body>Hey</body></html>"
@@ -98,7 +98,7 @@ class DocRaptorTest < MiniTest::Unit::TestCase
       end
     end
   end
-  
+
   describe "calling create!" do
     before do
       DocRaptor.api_key "something something"
@@ -125,7 +125,7 @@ class DocRaptorTest < MiniTest::Unit::TestCase
         assert_raises(DocRaptorError::NoContentError) {DocRaptor.create!(:document_url => "")}
       end
     end
-    
+
     describe "with document_content" do
       before do
         @html_content = "<html><body>Hey</body></html>"
@@ -143,7 +143,7 @@ class DocRaptorTest < MiniTest::Unit::TestCase
       end
     end
   end
-  
+
   describe "list_docs" do
     before do
       DocRaptor.api_key "something something"
@@ -155,7 +155,7 @@ class DocRaptorTest < MiniTest::Unit::TestCase
         assert_raises(ArgumentError) {DocRaptor.list_docs(nil)}
       end
     end
-    
+
     describe "with good arguments" do
       it "should give me a valid response" do
         stub_http_response_with("simple_list_docs", :get)
@@ -175,7 +175,7 @@ class DocRaptorTest < MiniTest::Unit::TestCase
         assert_raises(ArgumentError) {DocRaptor.list_docs!(nil)}
       end
     end
-    
+
     describe "with good arguments" do
       it "should give me a valid response" do
         stub_http_response_with("simple_list_docs", :get)
