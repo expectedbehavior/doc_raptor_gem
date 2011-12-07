@@ -1,5 +1,9 @@
 # DocRaptor gem Change Log
 
+## doc_raptor 0.2.1
+* bug: there were certain envs where .blank? wasn't defined. So,
+pulling in the core_ext from activesupport
+
 ## doc_raptor 0.2.0
 * tests!
 * added a create! method which will raise an exception when doc creation fails
