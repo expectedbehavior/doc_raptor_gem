@@ -32,7 +32,7 @@ end
 
 class DocRaptor
   include HTTParty
-  
+
   def self.api_key(key = nil)
     default_options[:api_key] = key ? key : default_options[:api_key] || ENV["DOCRAPTOR_API_KEY"]
     default_options[:api_key] || raise(DocRaptorError::NoApiKeyProvidedError.new("No API key provided"))
@@ -51,7 +51,7 @@ class DocRaptor
       raise DocRaptorError::NoContentError.new("must supply :document_content or :document_url")
     end
 
-    default_options = { 
+    default_options = {
       :name                       => "default",
       :document_type              => "pdf",
       :test                       => false,
@@ -99,7 +99,7 @@ class DocRaptor
       response
     end
   end
-  
+
   def self.list_docs!(options = { })
     raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
     self.list_docs(options.merge({:raise_exception_on_failure => true}))
@@ -107,7 +107,7 @@ class DocRaptor
 
   def self.list_docs(options = { })
     raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
-    default_options = { 
+    default_options = {
       :page     => 1,
       :per_page => 100,
       :raise_exception_on_failure => false
