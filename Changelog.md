@@ -1,5 +1,8 @@
 # DocRaptor gem Change Log
 
+## doc_raptor 0.2.2
+* bug: forgot a file in the gem
+
 ## doc_raptor 0.2.1
 * bug: there were certain envs where .blank? wasn't defined. So,
 pulling in the core_ext from activesupport
