@@ -1,19 +1,32 @@
-Gem::Specification.new do |s|
-  s.name = %q{doc_raptor}
-  s.description = %q{Provides a simple ruby wrapper around the DocRaptor API}
-  s.summary = %q{Provides a simple ruby wrapper around the DocRaptor API}
-  s.version = "0.2.2"
-  s.date = %q{2011-08-29}
-  s.authors = ["Michael Kuehl","Joel Meador","Chris Moore"]
-  s.email = %q{michael@expectedbehavior.com}
-  s.summary = %q{wrap up the api for DocRaptor nicely}
-  s.homepage = %q{http://docraptor.com}
-  s.require_paths = ["lib"]
-  s.files = [ "Changelog.md", "README.md", "MIT-LICENSE", "lib/doc_raptor.rb", "lib/core_ext/object/blank.rb"]
+# -*- encoding: utf-8 -*-
+$LOAD_PATH.push(File.expand_path "../lib", __FILE__)
+require "doc_raptor/version"
 
-  [
-   ["httparty", ">=0.4.3"],
-  ].each do |gem_name, gem_version|
-    s.add_dependency gem_name, gem_version
-  end
+Gem::Specification.new do |gem|
+  gem.name          = "doc_raptor"
+  gem.authors       = ["Michael Kuehl", "Joel Meador", "Chris Moore"]
+  gem.email         = ["michael@expectedbehavior.com"]
+  gem.description   = %q{Provides a simple ruby wrapper around the DocRaptor API}
+  gem.summary       = %q{Provides a simple ruby wrapper around the DocRaptor API}
+  gem.homepage      = "http://docraptor.com"
+  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  gem.files         = ["Changelog.md",
+                       "README.md",
+                       "MIT-LICENSE",
+                       "lib/doc_raptor/version.rb",
+                       "lib/doc_raptor/error.rb",
+                       "lib/doc_raptor/exception.rb",
+                       "lib/doc_raptor.rb",
+                       "lib/core_ext/object/blank.rb"]
+
+  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  gem.require_paths = ["lib"]
+  gem.version       = DocRaptor::VERSION
+
+  gem.add_dependency "httparty", ">=0.4.3"
+
+  gem.add_development_dependency "minitest"
+  gem.add_development_dependency "pry"
+  gem.add_development_dependency "rake"
+  gem.add_development_dependency "webmock"
 end
