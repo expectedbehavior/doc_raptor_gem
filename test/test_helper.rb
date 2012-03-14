@@ -7,6 +7,9 @@ require 'minitest/spec'
 require 'minitest/mock'
 require 'webmock/minitest'
 
+# pull in the docraptor code
+require File.expand_path(File.dirname(__FILE__) + "/../lib/doc_raptor")
+
 class MiniTest::Unit::TestCase
   def stub_http_response_with(filename, method = :any, status = 200)
     format = filename.split('.').last.intern
