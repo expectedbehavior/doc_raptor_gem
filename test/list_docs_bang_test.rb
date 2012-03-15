@@ -15,12 +15,12 @@ describe "list_docs!" do
 
     describe "with good arguments" do
       it "should give me a valid response" do
-        stub_http_response_with("simple_list_docs", :get)
-        assert_equal file_fixture("simple_list_docs"), DocRaptor.list_docs!.body
+        stub_http_response_with("simple_list_docs.xml", :get)
+        assert_equal file_fixture("simple_list_docs.xml"), DocRaptor.list_docs!.body
       end
 
       it "raise an exception when the list get fails" do
-        stub_http_response_with("invalid_list_docs", :get, 422)
+        stub_http_response_with("invalid_list_docs.xml", :get, 422)
         assert_raises(DocRaptorException::DocumentListingFailure) {DocRaptor.list_docs!}
       end
     end

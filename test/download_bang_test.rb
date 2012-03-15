@@ -8,14 +8,14 @@ class DownloadBangTest < MiniTest::Unit::TestCase
 
     describe "with good arguments" do
       it "should give me a valid response" do
-        stub_http_response_with("simple_download", :get)
+        stub_http_response_with("simple_download.pdf", :get)
         DocRaptor.download!("test-id")
       end
     end
 
     describe "with invalid arguments" do
       it "should raise an exception" do
-        stub_http_response_with("invalid_download", :get, 400)
+        stub_http_response_with("invalid_download.xml", :get, 400)
         assert_raises(DocRaptorException::DocumentDownloadFailure) {DocRaptor.download!("test-id")}
       end
     end

@@ -8,7 +8,7 @@ class DownloadTest < MiniTest::Unit::TestCase
 
     describe "with good arguments" do
       it "should give me a valid response" do
-        stub_http_response_with("simple_download", :get)
+        stub_http_response_with("simple_download.pdf", :get)
         DocRaptor.download("test-id")
       end
     end

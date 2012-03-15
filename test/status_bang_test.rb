@@ -8,14 +8,14 @@ class StatusBangTest < MiniTest::Unit::TestCase
 
     describe "with good arguments" do
       it "should give me a valid response" do
-        stub_http_response_with("simple_status", :get)
+        stub_http_response_with("simple_status.json", :get)
         DocRaptor.status!("test-id")
       end
     end
 
     describe "with invalid arguments" do
       it "should raise an exception" do
-        stub_http_response_with("invalid_status", :get, 403)
+        stub_http_response_with("invalid_status.xml", :get, 403)
         assert_raises(DocRaptorException::DocumentStatusFailure) {DocRaptor.status!("test-id")}
       end
     end
