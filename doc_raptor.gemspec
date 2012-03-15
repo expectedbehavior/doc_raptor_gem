@@ -10,15 +10,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Provides a simple ruby wrapper around the DocRaptor API}
   gem.homepage      = "http://docraptor.com"
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  gem.files         = ["Changelog.md",
-                       "README.md",
-                       "MIT-LICENSE",
-                       "lib/doc_raptor/version.rb",
-                       "lib/doc_raptor/error.rb",
-                       "lib/doc_raptor/exception.rb",
-                       "lib/doc_raptor.rb",
-                       "lib/core_ext/object/blank.rb"]
-
+  gem.files         = `git ls-files`.split("\n")
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.require_paths = ["lib"]
   gem.version       = DocRaptor::VERSION

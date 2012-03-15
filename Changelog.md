@@ -1,12 +1,13 @@
 # DocRaptor Gem Changelog
 
-## 0.2.3 - 2012/03/14
+## 0.2.3 - 2012/03/15
 * major test refactor in preparation for bigger changes
 * use current gem packaging techniques
 * add rake into the mix so all the tests can be run with `rake` instead of `bundle exec ruby whatever`
 * readme cleanup
 * changelog cleanup
 * added dates for all the versions to the changelog
+* package all the files from the repo instead of just a few
 
 ## 0.2.2 - 2011/12/07
 * BUG: forgot a file in the gem

@@ -1,1 +1,1 @@
-rvm ruby-1.9.2-p290@docraptor_gem --create
+rvm 1.9.2@docraptor_gem --create
