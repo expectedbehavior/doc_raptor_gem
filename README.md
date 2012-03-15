@@ -98,3 +98,78 @@ For more examples including a full rails example, check [https://github.com/expe
 Maintained by [Expected Behavior](http://expectedbehavior.com)
 
 Released under the MIT license. [http://github.com/expected-behavior/docraptor-gem](http://github.com/expected-behavior/docraptor-gem)
+
+## Obligatory Raptor
+
+                                                                                ''
+                                                                                -'
+                                                                               .-
+                                                                              .:'
+                                                                              :-
+                                                                             -s-
+                                                                            'sy.
+                                                                            .so'
+                                                                            -/-
+                                                                           '::.
+                                                                           .+o'
+                                                                          '+hs
+                                                                          .yh+
+                                                                          :ys-
+                                                                          :+/'
+                                                                         '/+:
+                                                                         :sy:
+                                                                        'shh.
+                                                                        -yyo
+                                                                        -//-
+                                                                       ':/:'
+                                                                       :+o/
+                                                                      'syy:
+                           '                                          :yyy.
+                        '':+-                                        '/oo+
+                    '..-++o++//-'                                    .///.
+                ./++oooooooso+oo+.                                  '/++/'
+               -oosssoosydddhhsosy+-                                :yyh+
+              .sssyssshddyhddhhhsyso'                              -yhhh-
+              -syyyyddmmmhyddhyhysyy/                             '+shho'
+             -syyydmmmddmddhhyyyysyhy-                           '-//+o-
+           ./yyhhmmddddhhhyysssyyyydhy.                         '/ooo+:
+          :syyydmhdddddhyyyssyyyyhhhhho                        .+hddhs.
+        '/ossyhhhhhddhhhhhhdhhyhhhhhhhh:       ''....''       .+shddd/
+        :syosyhhhyyyyhdmddhyyyyyyyhhdhhh-''.-:/++++oooo+/:. ':+ooooso'
+       .+ysoosyyyyyydNmmdyyyyyoosyhdddddho//+osooooosyhyooyoooyhhys+.
+       -oo+++sssyyhmNmmdyyyo-'-/osyhhdddddhssssyyyssyyhhhsyhhysshhy:
+      ':+++oossyhdNNmmhyy+.    -/+osyhhddddddhhhhhyyyhdddhhdmhhyyho'
+        '''.:yydNmmdhyy+.       ./+syyhhddddmddhdhhyyhdmmdddmmhhys.
+            /yydmmhyys:          .:+osyhdddddddddhhhhdmmddhyyddyy+
+           '+syhyssyo.           .+/+oshhdddddddhhhhhdNmhyysoohyyo'
+           '/+sooss/'            /oo+ooshddddhhhhyhhdmmhysyhdsshyo-
+            -/o++:'              /++osssyhhhhyyyyyyhdddhhhhmNyohys:
+              '                 :o+++osssyyyyyyssyyhdmmddmmmmhohhs+
+                               .oo++oosssyyyysyssyhmNNmmmmdhyooddyo'
+                               :/+ssysssyyysyyyyyhdmNNNmyyhyooshhys'
+                              ':/sddddhysyssyyyyhhhdmNNysosoooshhyy'
+                              ./oyddmmmmmhhyyyyssoosyhdy+ososyshhh+
+                              -+yhdddmNmNNmNNmmo/+oyyhhs+osshyshhh/
+                              :+hdhhddmmmmmmmNd'  '-syhyoshhhsyyyyo'
+                             .:odmddddmNmmdddmm+    ./ssoshdhsyysss/
+                             ./ohmmmy:smmddhhdmh'     ''-oshhysssyys'
+                             ./+hdmNd-:mmddhhddo        .osydhhyyhho'
+                             ./+ydmNMmydmmdddhh:        .ssyhddyyhh/
+                              odsydmNMNydmmddhh-        .ossyhdhyyy.
+                              ./'-sdmNN+/dmmddd:         +hyssysyyh-
+                                  'oyh/.'odddmm/         ohysoossyho'
+                                   ':hd:'/hhhdmo         '.-/+ooosys'
+                                     '-+osyhhdmy'            '/+osy/
+                                         .syyhhh.            '/+osy.
+                                         'osssys'            -+ooss.
+                                         '/ooos+'           '/oosss.
+                                          :oo+o+'          -shhhyyy/
+                                         '+ss+oy.         .yNmmmdhys.
+                                         smNdshd:          -ydmdhyys/'
+                                        .mNNdydms           :yhyyhy++/.
+                                       '+ddyyhdy:            -sddddo++s+'
+                                  '.-/ohdmNdyyy'             'odmyss+odd/
+                              -+oyhhhhdmmmmdhy+               ':-    '.:.
+                            'sMmoosshmmNdmmh/.
+                            -oo+---/ddmMhho'
+                                    :++:-'
