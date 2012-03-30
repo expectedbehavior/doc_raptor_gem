@@ -1,15 +1,12 @@
 require 'rubygems'
 
-# minitest setup
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/spec'
 require 'minitest/mock'
 require 'webmock/minitest'
 require 'pry'
-
-# pull in the docraptor code
-require_relative "../lib/doc_raptor"
+require "doc_raptor"
 
 class MiniTest::Unit::TestCase
   def stub_http_response_with(filename, method = :any, status = 200, headers = nil)
