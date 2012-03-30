@@ -1,5 +1,11 @@
 # DocRaptor Gem Changelog
 
+## 0.3.0 - 2012/03/29
+* BUGFIX async create calls were incorrectly returning the status id
+  instead of the response object
+* More test (fixture) refactoring
+* A little production code cleanup
+
 ## 0.2.3 - 2012/03/15
 * major test refactor in preparation for bigger changes
 * use current gem packaging techniques
