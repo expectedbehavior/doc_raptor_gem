@@ -8,7 +8,7 @@ class StatusTest < MiniTest::Unit::TestCase
 
     describe "with good arguments" do
       it "should give me a valid response" do
-        stub_http_response_with("simple_status", :get)
+        stub_http_response_with("simple_status.json", :get)
         DocRaptor.status("test-id")
       end
     end
