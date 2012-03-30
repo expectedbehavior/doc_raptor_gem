@@ -39,11 +39,6 @@ class DocRaptor
     raise_exception_on_failure = options[:raise_exception_on_failure]
     options.delete :raise_exception_on_failure
 
-    query = { }
-    if options[:async]
-      query[:output => 'json']
-    end
-
     # HOTFIX
     # convert safebuffers to plain old strings so the gsub'ing that has to occur
     # for url encoding works
@@ -54,10 +49,14 @@ class DocRaptor
     end
     # /HOTFIX
 
-    response = post("/docs", :body => {:doc => options}, :basic_auth => { :username => api_key }, :query => query)
+    response = post("/docs", :body => {:doc => options}, :basic_auth => {:username => api_key})
 
     if raise_exception_on_failure && !response.success?
       raise DocRaptorException::DocumentCreationFailure.new response.body, response.code
+    end
+
+    if response.success? && options[:async]
+      self.status_id = response.parsed_response["status_id"]
     end
 
     if block_given?
@@ -70,8 +69,6 @@ class DocRaptor
         ret_val = yield f, response
       end
       ret_val
-    elsif options[:async]
-      self.status_id = response.parsed_response["status_id"]
     else
       response
     end
@@ -97,6 +94,7 @@ class DocRaptor
     if raise_exception_on_failure && !response.success?
       raise DocRaptorException::DocumentListingFailure.new response.body, response.code
     end
+
     response
   end
 

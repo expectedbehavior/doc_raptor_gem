@@ -35,13 +35,13 @@ class CreateBangTest < MiniTest::Unit::TestCase
 
       it "should give me some error message if pass some invalid content" do
         invalid_html = "<herp"
-        stub_http_response_with("invalid_pdf", :post, 422)
+        stub_http_response_with("invalid_pdf.xml", :post, 422)
         assert_raises(DocRaptorException::DocumentCreationFailure) {DocRaptor.create!(:document_content => invalid_html)}
       end
 
       it "should give me a valid response if I pass some valid content" do
-        stub_http_response_with("simple_pdf", :post)
-        assert_equal file_fixture("simple_pdf"), DocRaptor.create!(:document_content => @html_content).body
+        stub_http_response_with("simple_pdf.pdf", :post)
+        assert_equal file_fixture("simple_pdf.pdf"), DocRaptor.create!(:document_content => @html_content).body
       end
     end
   end
