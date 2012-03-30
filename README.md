@@ -35,7 +35,7 @@ The only required parameter is one of `:document_content` or `:document_url`.
 
 `create!` will raise an exception instead of return errors if there is a failure of any sort in the document generation process. It otherwise works in the same way as `create`.
 
-If the document is processed asynchronously, a status id will be returned as opposed to the contents of the document. You can then use <METHOD NAME> to get the status of the document. You can pass in a URL to `:callback_url` to be called once an asynchronous job is complete.  It will be passed a value of `download_url` which will contain a URL that when visited will provide you with your document.  This option does nothing if `:async` is not true.
+If the document is processed asynchronously, `status_id` will be set on the DocRaptor class. You can then use `DocRaptor.status` to get the current status of the document. When creating an asynchronous doc, you can pass in a URL via `:callback_url` to be called once an asynchronous job is complete.  It will be passed a value of `download_url` which will contain a URL that when visited will provide you with your document.  This option does nothing if `:async` is not set to true.
 
 The `create` call can also take a block, like so:
 
