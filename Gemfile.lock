@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    doc_raptor (0.3.1)
-      httparty (>= 0.4.3)
+    doc_raptor (0.3.2)
+      httparty (>= 0.7.0)
 
 GEM
   remote: https://rubygems.org/

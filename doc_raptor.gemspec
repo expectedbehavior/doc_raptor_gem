@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = DocRaptor::VERSION
 
-  gem.add_dependency "httparty", ">=0.4.3"
+  gem.add_dependency "httparty", ">=0.7.0"
 
   gem.add_development_dependency "minitest"
   gem.add_development_dependency "pry"
