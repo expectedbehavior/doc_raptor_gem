@@ -1,5 +1,9 @@
 # DocRaptor Gem Changelog
 
+## 0.3.1 - 2012/03/30
+* update the README around async jobs, since it was still talking
+  about the gem's behavior in 0.2.x
+
 ## 0.3.0 - 2012/03/29
 * BUGFIX async create calls were incorrectly returning the status id
   instead of the response object

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    doc_raptor (0.3.0)
+    doc_raptor (0.3.1)
       httparty (>= 0.4.3)
 
 GEM
@@ -15,7 +15,7 @@ GEM
       multi_xml
     method_source (0.7.1)
     minitest (2.11.3)
-    multi_json (1.1.0)
+    multi_json (1.2.0)
     multi_xml (0.4.2)
     pry (0.9.8.4)
       coderay (~> 1.0.5)
