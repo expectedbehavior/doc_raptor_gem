@@ -25,7 +25,7 @@ You might want to set other options in that hash:
 * `:document_type` - "pdf" or "xls"; controls the type of document generated; default is "pdf"
 * `:name` - an identifier you can use for the document; shows up in doc logs; default is "default"
 * `:test` - test mode flag; set to true to while doing testing so the docs won't count against your monthly count; default is false
-* `:prince_options` - see [http://docraptor.com/documentation#pdf_options](http://docraptor.com/documentation#pdf_options) (PDFs only)
+* `:prince_options` - see [http://docraptor.com/documentation/pdf_styles_options](http://docraptor.com/documentation/pdf_styles_options) (PDFs only)
 * `:async` - create the document asynchonously; default is false
 * `:callback_url` - a url that we will hit with a status once the asynchronous document has been fully processed 
 
