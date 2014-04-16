@@ -1,5 +1,9 @@
 # DocRaptor Gem Changelog
 
+## 0.3.2 - 2012/03/30
+* Update the httparty requirement quite a bit as some of the methods
+  we were using were from 0.7.0 (as opposed to the old >= 0.4.3)
+
 ## 0.3.1 - 2012/03/30
 * update the README around async jobs, since it was still talking
   about the gem's behavior in 0.2.x
