@@ -61,7 +61,7 @@ class DocRaptor
 
     if block_given?
       ret_val = nil
-      Tempfile.open("docraptor") do |f|
+      Tempfile.open("docraptor", :encoding => "ascii-8bit") do |f|
         f.sync = true
         f.write(response.body)
         f.rewind
