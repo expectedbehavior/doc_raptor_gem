@@ -17,8 +17,8 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "httparty", ">=0.7.0"
 
-  gem.add_development_dependency "minitest"
+  gem.add_development_dependency "minitest", "~> 2.11.3"
   gem.add_development_dependency "pry"
   gem.add_development_dependency "rake"
-  gem.add_development_dependency "webmock"
+  gem.add_development_dependency "webmock", "~> 1.8.2"
 end
