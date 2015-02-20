@@ -1,5 +1,8 @@
 # DocRaptor Gem Changelog
 
+## 0.3.4 - 2015/02/20
+* Remove confusing Gemfile.lock.
+
 ## 0.3.3 - 2015/02/20
 * Set encoding on tempfiles to avoid encoding issue on binary data.
 
