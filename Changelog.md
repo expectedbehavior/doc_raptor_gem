@@ -1,5 +1,8 @@
 # DocRaptor Gem Changelog
 
+## 0.3.3 - 2015/02/20
+* Set encoding on tempfiles to avoid encoding issue on binary data.
+
 ## 0.3.2 - 2012/03/30
 * Update the httparty requirement quite a bit as some of the methods
   we were using were from 0.7.0 (as opposed to the old >= 0.4.3)
