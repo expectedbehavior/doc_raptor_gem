@@ -90,7 +90,7 @@ The `download` function works like `DocRaptor.create` in that you get back eithe
 
 ## Privacy
 
-By default, this library will send DocRaptor information about the version of the gem you are using as well as your ruby runtime and ruby version. If you would like to not report that data, you can do so by calling `DocRaptor.disable_agent_tracking` when you initialize the library.
+To help us improve and support DocRaptor, this library will send DocRaptor information about the version of the gem you are using, as well as your ruby runtime. If you would like to not report that data, you can do so by calling `DocRaptor.disable_agent_tracking` when you initialize the library.
 
 ## Examples
 
