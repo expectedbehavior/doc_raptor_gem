@@ -10,9 +10,15 @@ end
 class DocRaptor
   include HTTParty
 
+  default_options[:headers] = { "User-Agent" => "expectedbehavior_doc_raptor_gem/#{DocRaptor::VERSION} #{RUBY_ENGINE}/#{RUBY_VERSION}"}
+
   def self.api_key(key = nil)
     default_options[:api_key] = key ? key : default_options[:api_key] || ENV["DOCRAPTOR_API_KEY"]
     default_options[:api_key] || raise(DocRaptorError::NoApiKeyProvidedError.new("No API key provided"))
+  end
+
+  def self.disable_agent_tracking
+    default_options[:headers].delete("User-Agent")
   end
 
   def self.create!(options = {})

@@ -87,6 +87,11 @@ DocRaptor.download(download_key)
 
 The `download` function works like `DocRaptor.create` in that you get back either an HTTParty response object or you can give it a block.
 
+
+## Privacy
+
+By default, this library will send DocRaptor information about the version of the gem you are using as well as your ruby runtime and ruby version. If you would like to not report that data, you can do so by calling `DocRaptor.disable_agent_tracking` when you initialize the library.
+
 ## Examples
 
 Check the examples directory for some simple examples. To make them work, you will need to have the docraptor gem installed (via bundler or gem install).

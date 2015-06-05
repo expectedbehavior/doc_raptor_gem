@@ -29,6 +29,24 @@ class CreateTest < MiniTest::Unit::TestCase
       end
     end
 
+    describe "user agent testing" do
+      it "sends a user agent in the header" do
+        stub_request(:post, /docraptor\.com/).with(:headers => { "User-Agent" => "expectedbehavior_doc_raptor_gem/#{DocRaptor::VERSION} #{RUBY_ENGINE}/#{RUBY_VERSION}" }).to_return(:body => "", :status => 200, :headers => nil)
+        DocRaptor.create(:document_content => "Hey")
+      end
+
+      it "doesn't send a user agent in the header if .disable_agent_tracking has been called" do
+        agent_headers = DocRaptor.default_options[:headers]["User-Agent"]
+        begin
+          stub_request(:post, /docraptor\.com/).with(:headers => {}).to_return(:body => "", :status => 200, :headers => nil)
+          DocRaptor.disable_agent_tracking
+          DocRaptor.create(:document_content => "Hey")
+        ensure
+          DocRaptor.default_options[:headers]["User-Agent"] = agent_headers
+        end
+      end
+    end
+
     describe "with document_content" do
       before do
         @html_content = "<html><body>Hey</body></html>"
