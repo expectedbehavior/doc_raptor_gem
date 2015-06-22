@@ -9,13 +9,13 @@ The gem will look for your api key in the `ENV` variable `DOCRAPTOR_API_KEY`.  I
 not there, you can set it directly by calling:
 
 ```
-DocRaptor.api_key "My API Key Here"
+DocRaptor.api_key "YOUR_API_KEY_HERE"
 ```
 
 Once an API key is set, you can create a PDF document by calling:
 
 ```
-DocRaptor.create(:document_content => content)
+DocRaptor.create(:document_content => content, :test => true)
 ```
 
 You might want to set other options in that hash:
