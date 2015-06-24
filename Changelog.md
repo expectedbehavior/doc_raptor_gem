@@ -1,7 +1,8 @@
 # DocRaptor Gem Changelog
 
-## Untagged
+## 0.4.0 - 2015/06/24
 * Add user agent for calls `expectedbehavior_doc_raptor_gem/<gem version> <ruby platform>/<version>`
+* Update development dependencies to be more modern and not have as many warnings when generating new gems
 
 ## 0.3.4 - 2015/02/20
 * Remove confusing Gemfile.lock.
