@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/test_helper")
 
-class DocRaptorTest < MiniTest::Unit::TestCase
+class DocRaptorTest < MiniTest::Test
   describe "the public interface" do
     methods = [:api_key,
                :create,

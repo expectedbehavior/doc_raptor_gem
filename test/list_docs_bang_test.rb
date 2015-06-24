@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + "/test_helper")
 
-class ListDocsBangTest < MiniTest::Unit::TestCase
-describe "list_docs!" do
+class ListDocsBangTest < MiniTest::Test
+  describe "list_docs!" do
     before do
       DocRaptor.api_key "something something"
     end

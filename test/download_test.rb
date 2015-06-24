@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/test_helper")
 
-class DownloadTest < MiniTest::Unit::TestCase
+class DownloadTest < MiniTest::Test
   describe "download" do
     before do
       DocRaptor.api_key "something something"

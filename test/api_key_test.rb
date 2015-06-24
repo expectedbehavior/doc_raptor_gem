@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/test_helper")
 
-class ApiKeyTest < MiniTest::Unit::TestCase
+class ApiKeyTest < MiniTest::Test
   describe "test API keys" do
     before do
       DocRaptor.default_options.delete :api_key

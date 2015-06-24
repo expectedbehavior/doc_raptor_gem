@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/test_helper")
 
-class StatusTest < MiniTest::Unit::TestCase
+class StatusTest < MiniTest::Test
   describe "status" do
     before do
       DocRaptor.api_key "something something"
