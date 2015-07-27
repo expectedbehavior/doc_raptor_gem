@@ -27,6 +27,10 @@ class CreateTest < MiniTest::Test
         assert_raises(DocRaptorError::NoContentError) {DocRaptor.create(:document_url => nil)}
         assert_raises(DocRaptorError::NoContentError) {DocRaptor.create(:document_url => "")}
       end
+
+      it "should raise an error if document_url and document_content are blank" do
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create(:document_url => nil, :document_content => nil) }
+      end
     end
 
     describe "user agent testing" do
