@@ -4,6 +4,7 @@ gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/spec'
 require 'minitest/mock'
+require 'minitest/pride'
 require 'webmock/minitest'
 require 'pry'
 require "doc_raptor"
