@@ -19,7 +19,7 @@
   about the gem's behavior in 0.2.x
 
 ## 0.3.0 - 2012/03/29
-* BUGFIX async create calls were incorrectly returning the status id
+* BUG: async create calls were incorrectly returning the status id
   instead of the response object
 * More test (fixture) refactoring
 * A little production code cleanup
