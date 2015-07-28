@@ -35,7 +35,7 @@ class DocRaptor
   def self.create(options = {})
     raise(DocRaptorError::OptionsHashNotHash.new(".create requires an options hash")) unless options.is_a?(Hash)
     if options[:document_content].blank? && options[:document_url].blank?
-      raise DocRaptorError::NoContentError.new("must supply :document_content or :document_url in options hash")
+      raise(DocRaptorError::NoContentError.new("must supply :document_content or :document_url in options hash"))
     end
 
     default_options = {
@@ -61,11 +61,7 @@ class DocRaptor
     response = post("/docs", :body => { :doc => options }, :basic_auth => { :username => api_key })
 
     if raise_exception_on_failure && !response.success?
-      raise DocRaptorException::DocumentCreationFailure.new response.body, response.code
-    end
-
-    if response.success? && options[:async]
-      self.status_id = response.parsed_response["status_id"]
+      raise(DocRaptorException::DocumentCreationFailure.new(response.body, response.code))
     end
 
     if block_given?
@@ -100,40 +96,40 @@ class DocRaptor
 
     response = get("/docs", :query => options, :basic_auth => { :username => api_key })
     if raise_exception_on_failure && !response.success?
-      raise DocRaptorException::DocumentListingFailure.new(response.body, response.code)
+      raise(DocRaptorException::DocumentListingFailure.new(response.body, response.code))
     end
 
     response
   end
 
-  def self.status!(id = self.status_id)
-    self.status(id, true)
+  def self.status!(id)
+    self.status(id, :raise_exception_on_failure => true)
   end
 
-  def self.status(id = self.status_id, raise_exception_on_failure = false)
+  def self.status(id, raise_exception_on_failure: false)
     response = get("/status/#{id}", :basic_auth => { :username => api_key }, :output => 'json')
 
     if raise_exception_on_failure && !response.success?
-      raise DocRaptorException::DocumentStatusFailure.new(response.body, response.code)
+      raise(DocRaptorException::DocumentStatusFailure.new(response.body, response.code))
     end
 
-    json = response.parsed_response
-    if json['status'] == 'completed'
-      self.download_key = json['download_url'].match(/.*?\/download\/(.+)/)[1]
-      json['download_key'] = self.download_key
+    response.parsed_response
+  end
+
+  def self.download!(download_url)
+    self.download(download_url, :raise_exception_on_failure => true)
+  end
+
+  def self.download(download_url, raise_exception_on_failure: false)
+    unless matches = download_url.match(/.*?\/download\/(.+)/)
+      raise(DocRaptorError::InvalidDownloadUrlError.new("download_url should match 'download/<id>', as returned by the status call in the 'download_url' field"))
     end
-    json
-  end
+    key = matches[1]
 
-  def self.download!(key = self.download_key)
-    self.download(key, true)
-  end
-
-  def self.download(key = self.download_key, raise_exception_on_failure = false)
     response = get("/download/#{key}")
 
     if raise_exception_on_failure && !response.success?
-      raise DocRaptorException::DocumentDownloadFailure.new(response.body, response.code)
+      raise(DocRaptorException::DocumentDownloadFailure.new(response.body, response.code))
     end
 
     if block_given?
@@ -149,11 +145,6 @@ class DocRaptor
     else
       response
     end
-  end
-
-  class << self
-    attr_accessor :status_id
-    attr_accessor :download_key
   end
 
   base_uri ENV["DOCRAPTOR_URL"] || "https://docraptor.com/"

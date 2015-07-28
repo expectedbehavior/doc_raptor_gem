@@ -90,7 +90,8 @@ class CreateTest < MiniTest::Test
                                     :async        => true)
 
         expected_status_id = JSON.parse(file_fixture("simple_enqueue.json"))["status_id"]
-        assert_equal expected_status_id, DocRaptor.status_id
+        assert expected_status_id.present?
+        assert_equal(expected_status_id, response["status_id"])
       end
 
       it "should give me a response object on failure to enqueue" do
@@ -106,7 +107,7 @@ class CreateTest < MiniTest::Test
         stub_http_response_with("invalid_enqueue.xml", :post, 422)
         response = DocRaptor.create(:document_url => "http://example.com",
                                     :async => true)
-        assert DocRaptor.status_id.nil?, DocRaptor.status_id
+        assert response["status_id"].blank?
       end
     end
   end
