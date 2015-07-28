@@ -3,8 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + "/test_helper")
 class CreateTest < MiniTest::Test
   describe "calling create" do
     before do
-      DocRaptor.api_key "something something"
-      DocRaptor.status_id = nil
+      DocRaptor.api_key = "something something"
     end
 
     describe "with bogus arguments" do

@@ -17,6 +17,10 @@ class DocRaptor
     default_options[:api_key] || raise(DocRaptorError::NoApiKeyProvidedError.new("No API key provided"))
   end
 
+  def self.api_key=(key)
+    api_key(key)
+  end
+
   def self.disable_agent_tracking
     default_options[:headers].delete("User-Agent")
   end

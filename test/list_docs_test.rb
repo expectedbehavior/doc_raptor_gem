@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + "/test_helper")
 class ListDocsTest < MiniTest::Test
   describe "list_docs" do
     before do
-      DocRaptor.api_key "something something"
+      DocRaptor.api_key = "something something"
     end
 
     describe "with bogus arguments" do
