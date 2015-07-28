@@ -46,8 +46,7 @@ class DocRaptor
       :raise_exception_on_failure => false
     }
     options = default_options.merge(options)
-    raise_exception_on_failure = options[:raise_exception_on_failure]
-    options.delete :raise_exception_on_failure
+    raise_exception_on_failure = options.delete(:raise_exception_on_failure)
 
     # HOTFIX
     # convert safebuffers to plain old strings so the gsub'ing that has to occur
@@ -97,8 +96,7 @@ class DocRaptor
       :raise_exception_on_failure => false
     }
     options = default_options.merge(options)
-    raise_exception_on_failure = options[:raise_exception_on_failure]
-    options.delete :raise_exception_on_failure
+    raise_exception_on_failure = options.delete(:raise_exception_on_failure)
 
     response = get("/docs", :query => options, :basic_auth => { :username => api_key })
     if raise_exception_on_failure && !response.success?
