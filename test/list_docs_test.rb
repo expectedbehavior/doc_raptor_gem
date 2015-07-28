@@ -8,8 +8,8 @@ class ListDocsTest < MiniTest::Test
 
     describe "with bogus arguments" do
       it "should raise an error if something other than an options hash is passed in" do
-        assert_raises(ArgumentError) {DocRaptor.list_docs(true)}
-        assert_raises(ArgumentError) {DocRaptor.list_docs(nil)}
+        assert_raises(DocRaptorError::OptionsHashNotHash) {DocRaptor.list_docs(true)}
+        assert_raises(DocRaptorError::OptionsHashNotHash) {DocRaptor.list_docs(nil)}
       end
     end
 

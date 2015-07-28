@@ -8,8 +8,8 @@ class CreateTest < MiniTest::Test
 
     describe "with bogus arguments" do
       it "should raise an error if something other than an options hash is passed in" do
-        assert_raises(ArgumentError) { DocRaptor.create(true) }
-        assert_raises(ArgumentError) { DocRaptor.create(nil) }
+        assert_raises(DocRaptorError::OptionsHashNotHash) { DocRaptor.create(true) }
+        assert_raises(DocRaptorError::OptionsHashNotHash) { DocRaptor.create(nil) }
       end
 
       it "should raise an error if document_content and document_url are both unset" do

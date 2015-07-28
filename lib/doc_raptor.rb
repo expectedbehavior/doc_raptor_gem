@@ -26,16 +26,16 @@ class DocRaptor
   end
 
   def self.create!(options = {})
-    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
-    self.create(options.merge({:raise_exception_on_failure => true}))
+    raise(DocRaptorError::OptionsHashNotHash.new(".create! requires an options hash")) unless options.is_a?(Hash)
+    self.create(options.merge(:raise_exception_on_failure => true))
   end
 
   # when given a block, hands the block a TempFile of the resulting document
   # otherwise, just returns the response
-  def self.create(options = { })
-    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
+  def self.create(options = {})
+    raise(DocRaptorError::OptionsHashNotHash.new(".create requires an options hash")) unless options.is_a?(Hash)
     if options[:document_content].blank? && options[:document_url].blank?
-      raise DocRaptorError::NoContentError.new("must supply :document_content or :document_url")
+      raise DocRaptorError::NoContentError.new("must supply :document_content or :document_url in options hash")
     end
 
     default_options = {
@@ -84,13 +84,13 @@ class DocRaptor
     end
   end
 
-  def self.list_docs!(options = { })
-    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
-    self.list_docs(options.merge({:raise_exception_on_failure => true}))
+  def self.list_docs!(options = {})
+    raise(DocRaptorError::OptionsHashNotHash.new(".list_docs! requires an options hash")) unless options.is_a?(Hash)
+    self.list_docs(options.merge(:raise_exception_on_failure => true))
   end
 
-  def self.list_docs(options = { })
-    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
+  def self.list_docs(options = {})
+    raise(DocRaptorError::OptionsHashNotHash.new(".list_docs requires an options hash")) unless options.is_a?(Hash)
     default_options = {
       :page                       => 1,
       :per_page                   => 100,
