@@ -10,7 +10,7 @@ end
 class DocRaptor
   include HTTParty
 
-  default_options[:headers] = { "User-Agent" => "expectedbehavior_doc_raptor_gem/#{DocRaptor::VERSION} #{RUBY_ENGINE}/#{RUBY_VERSION}"}
+  default_options[:headers] = { "User-Agent" => "expectedbehavior_doc_raptor_gem/#{DocRaptor::VERSION} #{RUBY_ENGINE}/#{RUBY_VERSION}" }
 
   def self.api_key(key = nil)
     default_options[:api_key] = key ? key : default_options[:api_key] || ENV["DOCRAPTOR_API_KEY"]
@@ -55,11 +55,11 @@ class DocRaptor
     # Broken by: https://github.com/rails/rails/commit/1300c034775a5d52ad9141fdf5bbdbb9159df96a#activesupport/lib/active_support/core_ext/string/output_safety.rb
     # Discussion: https://github.com/rails/rails/issues/1555
     if defined?(ActiveSupport) && defined?(ActiveSupport::SafeBuffer)
-      options.map{|k,v| options[k] = options[k].to_str if options[k].is_a?(ActiveSupport::SafeBuffer)}
+      options.map{ |k,v| options[k] = options[k].to_str if options[k].is_a?(ActiveSupport::SafeBuffer) }
     end
     # /HOTFIX
 
-    response = post("/docs", :body => {:doc => options}, :basic_auth => {:username => api_key})
+    response = post("/docs", :body => { :doc => options }, :basic_auth => { :username => api_key })
 
     if raise_exception_on_failure && !response.success?
       raise DocRaptorException::DocumentCreationFailure.new response.body, response.code
@@ -92,8 +92,8 @@ class DocRaptor
   def self.list_docs(options = { })
     raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
     default_options = {
-      :page     => 1,
-      :per_page => 100,
+      :page                       => 1,
+      :per_page                   => 100,
       :raise_exception_on_failure => false
     }
     options = default_options.merge(options)
@@ -102,7 +102,7 @@ class DocRaptor
 
     response = get("/docs", :query => options, :basic_auth => { :username => api_key })
     if raise_exception_on_failure && !response.success?
-      raise DocRaptorException::DocumentListingFailure.new response.body, response.code
+      raise DocRaptorException::DocumentListingFailure.new(response.body, response.code)
     end
 
     response
@@ -116,7 +116,7 @@ class DocRaptor
     response = get("/status/#{id}", :basic_auth => { :username => api_key }, :output => 'json')
 
     if raise_exception_on_failure && !response.success?
-      raise DocRaptorException::DocumentStatusFailure.new response.body, response.code
+      raise DocRaptorException::DocumentStatusFailure.new(response.body, response.code)
     end
 
     json = response.parsed_response
@@ -135,7 +135,7 @@ class DocRaptor
     response = get("/download/#{key}")
 
     if raise_exception_on_failure && !response.success?
-      raise DocRaptorException::DocumentDownloadFailure.new response.body, response.code
+      raise DocRaptorException::DocumentDownloadFailure.new(response.body, response.code)
     end
 
     if block_given?
