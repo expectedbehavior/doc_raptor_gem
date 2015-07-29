@@ -1,5 +1,10 @@
 # DocRaptor Gem Changelog
 
+## Unreleased
+* BREAKING: change the behavior of `DocRaptor.download` and `DocRaptor.status` calls to not use implicit state in the DocRaptor class
+* Refactor several places in core library for clarity
+* Refactor example code for clarity; async example for faster execution
+
 ## 0.4.0 - 2015/06/24
 * Add user agent for calls `expectedbehavior_doc_raptor_gem/<gem version> <ruby platform>/<version>`
 * Update development dependencies to be more modern and not have as many warnings when generating new gems
@@ -19,7 +24,7 @@
   about the gem's behavior in 0.2.x
 
 ## 0.3.0 - 2012/03/29
-* BUGFIX async create calls were incorrectly returning the status id
+* BUG: async create calls were incorrectly returning the status id
   instead of the response object
 * More test (fixture) refactoring
 * A little production code cleanup

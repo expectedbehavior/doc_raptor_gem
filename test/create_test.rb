@@ -3,29 +3,32 @@ require File.expand_path(File.dirname(__FILE__) + "/test_helper")
 class CreateTest < MiniTest::Test
   describe "calling create" do
     before do
-      DocRaptor.api_key "something something"
-      DocRaptor.status_id = nil
+      DocRaptor.api_key = "something something"
     end
 
     describe "with bogus arguments" do
       it "should raise an error if something other than an options hash is passed in" do
-        assert_raises(ArgumentError) {DocRaptor.create(true)}
-        assert_raises(ArgumentError) {DocRaptor.create(nil)}
+        assert_raises(DocRaptorError::OptionsHashNotHash) { DocRaptor.create(true) }
+        assert_raises(DocRaptorError::OptionsHashNotHash) { DocRaptor.create(nil) }
       end
 
       it "should raise an error if document_content and document_url are both unset" do
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create}
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create({:herped => :the_derp})}
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create }
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create(:herped => :the_derp) }
       end
 
       it "should raise an error if document_content is passed by is blank" do
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create(:document_content => nil)}
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create(:document_content => "")}
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create(:document_content => nil) }
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create(:document_content => "") }
       end
 
       it "should raise an error if document_url is passed by is blank" do
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create(:document_url => nil)}
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create(:document_url => "")}
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create(:document_url => nil) }
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create(:document_url => "") }
+      end
+
+      it "should raise an error if document_url and document_content are blank" do
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create(:document_url => nil, :document_content => nil) }
       end
     end
 
@@ -79,13 +82,16 @@ class CreateTest < MiniTest::Test
       end
 
       it "should set the status_id on successful enqueue" do
-        stub_http_response_with("simple_enqueue.json", :post,
-                                200, 'Content-Type' => "application/json")
+        stub_http_response_with("simple_enqueue.json",
+                                :post,
+                                200,
+                                "Content-Type" => "application/json")
         response = DocRaptor.create(:document_url => "http://example.com",
-                                    :async => true)
+                                    :async        => true)
 
         expected_status_id = JSON.parse(file_fixture("simple_enqueue.json"))["status_id"]
-        assert_equal expected_status_id, DocRaptor.status_id
+        assert expected_status_id.present?
+        assert_equal(expected_status_id, response["status_id"])
       end
 
       it "should give me a response object on failure to enqueue" do
@@ -101,7 +107,7 @@ class CreateTest < MiniTest::Test
         stub_http_response_with("invalid_enqueue.xml", :post, 422)
         response = DocRaptor.create(:document_url => "http://example.com",
                                     :async => true)
-        assert DocRaptor.status_id.nil?, DocRaptor.status_id
+        assert response["status_id"].blank?
       end
     end
   end
