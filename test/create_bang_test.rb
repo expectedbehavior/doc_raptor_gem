@@ -8,23 +8,23 @@ class CreateBangTest < MiniTest::Test
 
     describe "with bogus arguments" do
       it "should raise an error if something other than an options hash is passed in" do
-        assert_raises(DocRaptorError::OptionsHashNotHash) {DocRaptor.create!(true)}
-        assert_raises(DocRaptorError::OptionsHashNotHash) {DocRaptor.create!(nil)}
+        assert_raises(DocRaptorError::OptionsHashNotHash) { DocRaptor.create!(true) }
+        assert_raises(DocRaptorError::OptionsHashNotHash) { DocRaptor.create!(nil) }
       end
 
       it "should raise an error if document_content and document_url are both unset" do
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create!}
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create!({:herped => :the_derp})}
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create! }
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create!(:herped => :the_derp) }
       end
 
       it "should raise an error if document_content is passed by is blank" do
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create!(:document_content => nil)}
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create!(:document_content => "")}
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create!(:document_content => nil) }
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create!(:document_content => "") }
       end
 
       it "should raise an error if document_url is passed by is blank" do
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create!(:document_url => nil)}
-        assert_raises(DocRaptorError::NoContentError) {DocRaptor.create!(:document_url => "")}
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create!(:document_url => nil) }
+        assert_raises(DocRaptorError::NoContentError) { DocRaptor.create!(:document_url => "") }
       end
     end
 
@@ -36,7 +36,7 @@ class CreateBangTest < MiniTest::Test
       it "should give me some error message if pass some invalid content" do
         invalid_html = "<herp"
         stub_http_response_with("invalid_pdf.xml", :post, 422)
-        assert_raises(DocRaptorException::DocumentCreationFailure) {DocRaptor.create!(:document_content => invalid_html)}
+        assert_raises(DocRaptorException::DocumentCreationFailure) { DocRaptor.create!(:document_content => invalid_html) }
       end
 
       it "should give me a valid response if I pass some valid content" do
