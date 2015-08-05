@@ -104,6 +104,30 @@ class DocRaptor
     response
   end
 
+  def self.doc_logs!(options = { })
+    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
+    self.doc_logs(options.merge({:raise_exception_on_failure => true}))
+  end
+
+  def self.doc_logs(options = { })
+    raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
+    default_options = {
+      :page     => 1,
+      :per_page => 100,
+      :raise_exception_on_failure => false
+    }
+    options = default_options.merge(options)
+    raise_exception_on_failure = options[:raise_exception_on_failure]
+    options.delete :raise_exception_on_failure
+
+    response = get("/doc_logs", :query => options, :basic_auth => { :username => api_key })
+    if raise_exception_on_failure && !response.success?
+      raise DocRaptorException::DocumentListingFailure.new response.body, response.code
+    end
+
+    response
+  end
+
   def self.status!(id = self.status_id)
     self.status(id, true)
   end
