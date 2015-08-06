@@ -15,8 +15,8 @@ class DocLogsTest < MiniTest::Test
 
     describe "with good arguments" do
       it "should give me a valid response" do
-        stub_http_response_with("simple_list_docs.xml", :get)
-        assert_equal file_fixture("simple_list_docs.xml"), DocRaptor.doc_logs.body
+        stub_http_response_with("simple_doc_logs.xml", :get)
+        assert_equal file_fixture("simple_doc_logs.xml"), DocRaptor.doc_logs.body
       end
     end
   end

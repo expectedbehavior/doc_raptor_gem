@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc-logs type="array">
+  <doc-log>
+    <name>8v8weck7.pdf</name>
+    <document-type>pdf</document-type>
+    <document-url>http://example.com</document-url>
+    <test type="boolean">true</test>
+    <tag nil="true"/>
+    <success type="boolean">true</success>
+    <javascript type="boolean">true</javascript>
+    <async type="boolean">false</async>
+    <strict>none</strict>
+    <ip-address>127.0.0.1</ip-address>
+    <created-at type="datetime">2015-01-06T16:53:06Z</created-at>
+    <generation-time type="float">4.0</generation-time>
+    <input-size type="integer">1294</input-size>
+    <output-size type="integer">24227</output-size>
+    <prince-options>
+      <baseurl>http://example.com</baseurl>
+    </prince-options>
+    <validation-errors></validation-errors>
+    <generation-log>dat|total_page_count|1sta|Loading document...
+msg|inf||loading HTML5 input: -
+sta|Running scripts...
+msg|inf||loading script: /Users/joel/projects/docraptor/lib/princess.js
+sta|Applying style sheets...
+msg|inf||loading style sheet: /Users/joel/projects/docraptor/lib/prince_test_mode.css
+sta|Preparing document...
+sta|Converting document...
+prg|0
+msg|inf||used font: Open Sans, Bold
+msg|inf||used font: Open Sans, Regular
+msg|inf||used font: Times New Roman, Regular
+prg|100
+dat|total_page_count|1
+fin|success
+Tue Jan 06 12:53:09 2015: ---- begin
+Tue Jan 06 12:53:09 2015: Loading document...
+Tue Jan 06 12:53:09 2015: loading HTML5 input: -
+Tue Jan 06 12:53:09 2015: Running scripts...
+Tue Jan 06 12:53:09 2015: loading script: /Users/joel/projects/docraptor/lib/princess.js
+Tue Jan 06 12:53:09 2015: Applying style sheets...
+Tue Jan 06 12:53:09 2015: loading style sheet: /Users/joel/projects/docraptor/lib/prince_test_mode.css
+Tue Jan 06 12:53:09 2015: Preparing document...
+Tue Jan 06 12:53:09 2015: Converting document...
+Tue Jan 06 12:53:10 2015: used font: Open Sans, Bold
+Tue Jan 06 12:53:10 2015: used font: Open Sans, Regular
+Tue Jan 06 12:53:10 2015: used font: Times New Roman, Regular
+Tue Jan 06 12:53:10 2015: stats: total_page_count: 1
+Tue Jan 06 12:53:10 2015: finished: success
+Tue Jan 06 12:53:10 2015: ---- end
+</generation-log>
+  </doc-log>
+  <doc-log>
+    <name>5jbvvph0.pdf</name>
+    <document-type>pdf</document-type>
+    <document-url>http://example.com</document-url>
+    <test type="boolean">false</test>
+    <tag nil="true"/>
+    <success type="boolean">false</success>
+    <javascript type="boolean">true</javascript>
+    <async type="boolean">false</async>
+    <strict>none</strict>
+    <ip-address>127.0.0.1</ip-address>
+    <created-at type="datetime">2015-01-05T16:52:39Z</created-at>
+    <generation-time type="float">1.0</generation-time>
+    <input-size type="integer">0</input-size>
+    <output-size type="integer">0</output-size>
+    <prince-options>
+    </prince-options>
+    <validation-errors>Over document limit. Please upgrade your account.</validation-errors>
+    <generation-log nil="true"/>
+  </doc-log>
+</doc-logs>
