@@ -1,5 +1,10 @@
 # DocRaptor Gem Changelog
 
+## 0.5.0 - 2015/08/07
+* Add a new method for getting doc logs: `DocRaptor.list_doc_logs`/`DocRaptor.list_doc_logs!`
+* Add a new option to `DocRaptor.list_docs`, `DocRaptor.list_docs!`, `DocRaptor.list_doc_logs`, `DocRaptor.list_doc_logs!`: `output_format`.
+  Options should be one of `xml` or `json`.
+
 ## 0.4.0 - 2015/06/24
 * Add user agent for calls `expectedbehavior_doc_raptor_gem/<gem version> <ruby platform>/<version>`
 * Update development dependencies to be more modern and not have as many warnings when generating new gems

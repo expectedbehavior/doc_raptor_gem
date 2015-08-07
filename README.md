@@ -1,11 +1,11 @@
 # DocRaptor
 
-This is a Ruby gem providing a simple wrapper around the DocRaptor API. DocRaptor is a web service that allows you to convert [html to pdf](http://docraptor.com) or [html to xls](http://docraptor.com). 
+This is a Ruby gem providing a simple wrapper around the DocRaptor API. DocRaptor is a web service that allows you to convert [html to pdf](http://docraptor.com) or [html to xls](http://docraptor.com).
 
 
 ## Usage
 
-The gem will look for your api key in the `ENV` variable `DOCRAPTOR_API_KEY`.  If it is 
+The gem will look for your api key in the `ENV` variable `DOCRAPTOR_API_KEY`.  If it is
 not there, you can set it directly by calling:
 
 ```
@@ -27,7 +27,7 @@ You might want to set other options in that hash:
 * `:test` - test mode flag; set to true to while doing testing so the docs won't count against your monthly count; default is false
 * `:prince_options` - see [http://docraptor.com/documentation#pdf_options](http://docraptor.com/documentation#pdf_options) (PDFs only)
 * `:async` - create the document asynchonously; default is false
-* `:callback_url` - a url that we will hit with a status once the asynchronous document has been fully processed 
+* `:callback_url` - a url that we will hit with a status once the asynchronous document has been fully processed
 
 The only required parameter is one of `:document_content` or `:document_url`.
 
@@ -58,9 +58,9 @@ DocRaptor.status
 DocRaptor.status(status_id)
 ```
 
-`status_id` is the value returned from `DocRaptor.create` when `:async` is true.  If you have 
+`status_id` is the value returned from `DocRaptor.create` when `:async` is true.  If you have
 just created a document, `status_id` defaults to the last `status_id` received from DocRaptor.
-This will return a hash containing, at the very least, a key of `status` with a value of 
+This will return a hash containing, at the very least, a key of `status` with a value of
 one of the following: `{"completed", "failed", "killed", "queued", "working"}`.
 
 * If the status is `queued`, no other information will be available.
@@ -69,7 +69,7 @@ one of the following: `{"completed", "failed", "killed", "queued", "working"}`.
 
 There will also be a key of `download_key` that can be given to the `DocRaptor.download` function to obtain your document.  If the status is `killed`, it means the system had to abort your document generation process for an unknown reason, most likely it was taking too long to generate.  If the status is `failed` you can check the `messages` value for a message and the `validation_errors` value for a more detailed reason for the failure to generate your document.
 
-To download an async document, you can visit the URL (`download_url`) provided via the `status` 
+To download an async document, you can visit the URL (`download_url`) provided via the `status`
 function or you can call:
 
 ```
