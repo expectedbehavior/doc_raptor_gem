@@ -82,21 +82,22 @@ class DocRaptor
 
   def self.list_docs!(options = { })
     raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
-    self.list_docs(options.merge({:raise_exception_on_failure => true}))
+    self.list_docs(options.merge(:raise_exception_on_failure => true))
   end
 
   def self.list_docs(options = { })
     raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
     default_options = {
-      :page     => 1,
-      :per_page => 100,
-      :raise_exception_on_failure => false
+      :page                       => 1,
+      :per_page                   => 100,
+      :raise_exception_on_failure => false,
+      :output_format              => "xml",
     }
     options = default_options.merge(options)
-    raise_exception_on_failure = options[:raise_exception_on_failure]
-    options.delete :raise_exception_on_failure
+    output_format = options.delete(:output_format)
+    raise_exception_on_failure = options.delete(:raise_exception_on_failure)
 
-    response = get("/docs", :query => options, :basic_auth => { :username => api_key })
+    response = get("/docs.#{output_format}", :query => options, :basic_auth => { :username => api_key })
     if raise_exception_on_failure && !response.success?
       raise DocRaptorException::DocumentListingFailure.new response.body, response.code
     end
@@ -104,23 +105,25 @@ class DocRaptor
     response
   end
 
-  def self.doc_logs!(options = { })
+  def self.list_doc_logs!(options = { })
     raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
-    self.doc_logs(options.merge({:raise_exception_on_failure => true}))
+    self.list_doc_logs(options.merge(:raise_exception_on_failure => true))
   end
 
-  def self.doc_logs(options = { })
+  def self.list_doc_logs(options = { })
     raise ArgumentError.new "please pass in an options hash" unless options.is_a? Hash
     default_options = {
-      :page     => 1,
-      :per_page => 100,
-      :raise_exception_on_failure => false
+      :page                       => 1,
+      :per_page                   => 100,
+      :raise_exception_on_failure => false,
+      :output_format              => "xml",
     }
-    options = default_options.merge(options)
-    raise_exception_on_failure = options[:raise_exception_on_failure]
-    options.delete :raise_exception_on_failure
 
-    response = get("/doc_logs", :query => options, :basic_auth => { :username => api_key })
+    options = default_options.merge(options)
+    output_format = options.delete(:output_format)
+    raise_exception_on_failure = options.delete(:raise_exception_on_failure)
+
+    response = get("/doc_logs.#{output_format}", :query => options, :basic_auth => { :username => api_key })
     if raise_exception_on_failure && !response.success?
       raise DocRaptorException::DocumentListingFailure.new response.body, response.code
     end

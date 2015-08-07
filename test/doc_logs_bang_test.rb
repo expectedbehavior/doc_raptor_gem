@@ -8,20 +8,20 @@ class DocLogsBangTest < MiniTest::Test
 
     describe "with bogus arguments" do
       it "should raise an error if something other than an options hash is passed in" do
-        assert_raises(ArgumentError) {DocRaptor.doc_logs!(true)}
-        assert_raises(ArgumentError) {DocRaptor.doc_logs!(nil)}
+        assert_raises(ArgumentError) { DocRaptor.list_doc_logs!(true) }
+        assert_raises(ArgumentError) { DocRaptor.list_doc_logs!(nil) }
       end
     end
 
     describe "with good arguments" do
       it "should give me a valid response" do
         stub_http_response_with("simple_doc_logs.xml", :get)
-        assert_equal file_fixture("simple_doc_logs.xml"), DocRaptor.doc_logs!.body
+        assert_equal file_fixture("simple_doc_logs.xml"), DocRaptor.list_doc_logs!.body
       end
 
       it "raise an exception when the list get fails" do
         stub_http_response_with("invalid_list_docs.xml", :get, 422)
-        assert_raises(DocRaptorException::DocumentListingFailure) {DocRaptor.doc_logs!}
+        assert_raises(DocRaptorException::DocumentListingFailure) { DocRaptor.list_doc_logs! }
       end
     end
   end
