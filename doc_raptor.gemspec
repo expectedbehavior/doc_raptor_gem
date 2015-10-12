@@ -5,7 +5,7 @@ require "doc_raptor/version"
 Gem::Specification.new do |gem|
   gem.name          = "doc_raptor"
   gem.authors       = ["Michael Kuehl", "Joel Meador", "Chris Moore"]
-  gem.email         = ["michael@expectedbehavior.com", "joel@expectedbehavior.com"]
+  gem.email         = ["joel@expectedbehavior.com"]
   gem.summary       = %q{Provides a simple ruby wrapper around the DocRaptor API}
   gem.description   = %q{Easily create PDF and Excel files from html in your Ruby application using the DocRaptor API.}
   gem.homepage      = "http://docraptor.com"
