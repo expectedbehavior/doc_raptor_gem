@@ -21,3 +21,5 @@ test/tmp
 test/version_tmp
 tmp
 Gemfile.lock
+docraptor_sample.pdf
+docraptor_sample.xls
