@@ -55,7 +55,7 @@ class DocRaptor
     end
     # /HOTFIX
 
-    response = post("/docs", :body => {:doc => options}, :basic_auth => {:username => api_key})
+    response = post("/docs", :body => {:doc => options}, :basic_auth => {:username => api_key}, verify: false)
 
     if raise_exception_on_failure && !response.success?
       raise DocRaptorException::DocumentCreationFailure.new response.body, response.code
