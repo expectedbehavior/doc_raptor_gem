@@ -5,7 +5,7 @@
 
 # DocRaptor
 
-This is a Ruby gem providing a simple wrapper around the DocRaptor API. DocRaptor is a web service that allows you to convert [html to pdf](http://docraptor.com) or [html to xls](http://docraptor.com).
+This is a Ruby gem providing a simple wrapper around the DocRaptor API. DocRaptor is a web service that allows you to convert [html to pdf](https://docraptor.com) or [html to xls](https://docraptor.com).
 
 
 ## Usage
@@ -30,7 +30,7 @@ You might want to set other options in that hash:
 * `:document_type` - "pdf" or "xls"; controls the type of document generated; default is "pdf"
 * `:name` - an identifier you can use for the document; shows up in doc logs; default is "default"
 * `:test` - test mode flag; set to true to while doing testing so the docs won't count against your monthly count; default is false
-* `:prince_options` - see [http://docraptor.com/documentation#pdf_options](http://docraptor.com/documentation#pdf_options) (PDFs only)
+* `:prince_options` - see [https://docraptor.com/documentation/api](https://docraptor.com/documentation/api) (PDFs only)
 * `:async` - create the document asynchonously; default is false
 * `:callback_url` - a url that we will hit with a status once the asynchronous document has been fully processed
 
@@ -107,7 +107,7 @@ For more examples including a full rails example, check [https://github.com/expe
 
 ## Meta
 
-Maintained by [Expected Behavior](http://expectedbehavior.com)
+Maintained by [Expected Behavior](https://www.expectedbehavior.com)
 
 Released under the MIT license. [http://github.com/expected-behavior/docraptor-gem](http://github.com/expected-behavior/docraptor-gem)
 
